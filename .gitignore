@@ -361,3 +361,5 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/Passworder/DataBase/ApplicationContext.cs
+/Passworder/DataBase/ApplicationDbContext.cs

@@ -1,16 +1,13 @@
-﻿using System;
-using System.Reflection.Emit;
-
-namespace Passworder
+﻿namespace Passworder.Model
 {
     public class DataFilling
     {
-        public Guid Id { get; set; } = Guid.NewGuid();
-        public string Website { get; set; }
-        public string Title { get; set; }
-        public string Login { get; set; }
-        public string Password { get; set; }
-        public string Notes { get; set; }
+        public Guid Id { get; set; }
+        public string Website { get; set; } = string.Empty;
+        public string Title { get; set; } = string.Empty;
+        public string Login { get; set; } = string.Empty;
+        public string Password { get; set; } = string.Empty;
+        public string Notes { get; set; } = string.Empty;
 
         // Простейший ToString для отладки / списка
         public override string ToString() => $"{Title} ({Login})";

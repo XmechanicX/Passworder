@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Passworder.DataBase;
 using Passworder.Instruments;
+using Passworder.Model;
 
 namespace Passworder.ViewModel
 {
@@ -14,8 +15,6 @@ namespace Passworder.ViewModel
     {
         public vmMainPage()
         {
-            var db = new ApplicationContext();
-            Console.WriteLine(db.Database.CanConnect());
             Items.Add(new DataFilling() { Website = "https://example.com", Title = "Example", Login = "user1", Password = "password1", Notes = "Info" });
             Items.Add(new DataFilling() { Website = "https://example.com", Title = "Example2", Login = "user2", Password = "password2", Notes = "Info1" });
             Items.Add(new DataFilling() { Website = "https://example.com", Title = "Example3", Login = "user3", Password = "password3", Notes = "Info2" });
