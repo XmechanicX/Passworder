@@ -1,32 +1,30 @@
-﻿using System;
+﻿using Passworder.DataBase;
+using Passworder.Instruments;
+using Passworder.Model;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using Passworder.DataBase;
-using Passworder.Instruments;
-using Passworder.Model;
 
 namespace Passworder.ViewModel
 {
-    public class vmMainPage : ViewModelBase
+    public class vmMainPage : ViewModelBase<mMainPage>
     {
-        public vmMainPage()
+        public vmMainPage() : base(new mMainPage())
         {
-            Items.Add(new DataFilling() { Website = "https://example.com", Title = "Example", Login = "user1", Password = "password1", Notes = "Info" });
-            Items.Add(new DataFilling() { Website = "https://example.com", Title = "Example2", Login = "user2", Password = "password2", Notes = "Info1" });
-            Items.Add(new DataFilling() { Website = "https://example.com", Title = "Example3", Login = "user3", Password = "password3", Notes = "Info2" });
-
             AddCommand = new NonParamRelayCommand(Add, CanAdd);
             DeleteCommand = new NonParamRelayCommand(Delete, CanDelete);
-            LoadCommand = new NonParamRelayCommand(Load);
+            ApplyCommand = new NonParamRelayCommand(Apply);
         }
 
         public NonParamRelayCommand AddCommand { get; }
         public NonParamRelayCommand DeleteCommand { get; }
         public NonParamRelayCommand LoadCommand { get; }
+        public NonParamRelayCommand ApplyCommand { get; }
 
         private DataFilling _selectedItem;
         public DataFilling SelectedItem
@@ -34,17 +32,16 @@ namespace Passworder.ViewModel
             set
             {
                 _selectedItem = value;
+                Model.UpdateSelectedItemd(_selectedItem);
                 CallPropertyChanged(nameof(SelectedItem));
             }
             get => _selectedItem;
         }
-        public ObservableCollection<DataFilling> Items { get; set; } = new ObservableCollection<DataFilling>();
+        public ObservableCollection<DataFilling> Items => Model.Items;
 
         private void Add()
         {
-            var item = new DataFilling { Website = "", Title = "New", Login = "", Password = "" };
-            Items.Add(item);
-            SelectedItem = item;
+            Model.Add(new DataFilling());
         }
 
         private bool CanAdd() => true;
@@ -53,19 +50,15 @@ namespace Passworder.ViewModel
         {
             if (SelectedItem != null)
             {
-                var toRemove = SelectedItem;
-                SelectedItem = null;
-                Items.Remove(toRemove);
+                Model.Remove(SelectedItem);
             }
-            SelectedItem = Items.LastOrDefault();
         }
 
         private bool CanDelete() => SelectedItem != null;
 
-        private void Load()
+        private void Apply()
         {
-            // Пример: загрузка из репозитория/файла/сервиса
-            // Для демонстрации ничего не делаем
+            Model.UpdateDataInDb(SelectedItem);
         }
     }
 }

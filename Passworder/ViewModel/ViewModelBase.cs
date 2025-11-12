@@ -20,6 +20,6 @@ namespace Passworder
             this.Model = model;
         }
 
-        T Model { get; }
+        public T Model { get; }
     }
 }

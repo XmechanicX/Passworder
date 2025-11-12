@@ -36,6 +36,7 @@
                 <TextBox Text="{Binding SelectedItem.Login, Mode=TwoWay}" Foreground="Black" Margin="10" Height="30"/>
                 <TextBox Text="{Binding SelectedItem.Password, Mode=TwoWay}" Foreground="Black" Margin="10" Height="30"/>
                 <TextBox Text="{Binding SelectedItem.Notes, Mode=TwoWay}" Foreground="Black" Margin="10" Height="30"/>
+                <Button Content="Apply" Command="{Binding ApplyCommand}" Width="100"/>
             </StackPanel>
         </Grid>
     </StackPanel>
