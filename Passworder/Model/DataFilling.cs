@@ -4,7 +4,7 @@ namespace Passworder.Model
 {
     public class DataFilling
     {
-        public Guid Id { get; set; } = new Guid();
+        public Guid Id { get; set; } = Guid.NewGuid();
         public string Website { get; set; } = string.Empty;
         public string Title { get; set; } = string.Empty;
         public string Login { get; set; } = string.Empty;

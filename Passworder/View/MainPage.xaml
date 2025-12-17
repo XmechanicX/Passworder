@@ -25,13 +25,25 @@
                          SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
                          DisplayMemberPath="Title"
                          Height="200"/>
-                <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
-                    <Button Content="Add" Command="{Binding AddCommand}" Width="75" Margin="0,0,8,0"/>
-                    <Button Content="Delete" Command="{Binding DeleteCommand}" Width="75"/>
+                <StackPanel Margin="0,8,0,0">
+                    <Grid HorizontalAlignment="Center">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Button Grid.Row="0" Grid.Column="0" Content="Add" Command="{Binding AddCommand}" Width="75" Margin="0,8,8,0"/>
+                        <Button Grid.Row="0" Grid.Column="1" Content="Delete" Command="{Binding DeleteCommand}" Width="75" Margin="0,8,8,0"/>
+                        <Button Grid.Row="1" Grid.Column="0" Content="Import" Command="{Binding ImportCommand}" Width="75" Margin="0,8,8,0"/>
+                        <Button Grid.Row="1" Grid.Column="1" Content="Export" Command="{Binding ExportCommand}" Width="75" Margin="0,8,8,0"/>
+                    </Grid>
                 </StackPanel>
             </StackPanel>
             <StackPanel x:Name="Info" Grid.Column="1">
-                <TextBox Text="{Binding SelectedItem.Website, Mode=TwoWay}" Foreground="Black" Margin="10" Height="30"/>
+                <TextBox Text="{Binding SelectedItem.Website, Mode=TwoWay}" MouseDoubleClick="TextBox_MouseDoubleClick" Foreground="Black" Margin="10" Height="30"/>
                 <TextBox Text="{Binding SelectedItem.Title, Mode=TwoWay}" Foreground="Black" Margin="10" Height="30"/>
                 <TextBox Text="{Binding SelectedItem.Login, Mode=TwoWay}" Foreground="Black" Margin="10" Height="30"/>
                 <TextBox Text="{Binding SelectedItem.Password, Mode=TwoWay}" Foreground="Black" Margin="10" Height="30"/>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +24,15 @@ namespace Passworder.View
         public MainPage()
         {
             InitializeComponent();
+        }
+
+        private void TextBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            Uri uri;
+            if (Uri.TryCreate((sender as TextBox).Text, UriKind.Absolute, out uri))
+            {
+                Process.Start(new ProcessStartInfo() { FileName = uri.AbsoluteUri, UseShellExecute = true});
+            }
         }
     }
 }

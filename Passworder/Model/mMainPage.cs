@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Passworder.DataBase;
+using Passworder.Instruments;
 using Passworder.ViewModel;
 using System.Collections;
 using System.Collections.ObjectModel;
@@ -18,6 +19,8 @@ namespace Passworder.Model
         {
             CallPropertyChanged(nameof(Items));
         }
+
+        private ImportExport ImportExport = new ImportExport();
 
         private DataFilling _selectedItem;
         public DataFilling SelectedItem
@@ -75,6 +78,16 @@ namespace Passworder.Model
         {
             command.UpdateDataInDb(dataFilling);
             return true;
+        }
+
+        public void ImportData()
+        {
+            ImportExport.Import();
+        }
+
+        public void ExportData()
+        {
+            ImportExport.Export();
         }
     }
 }

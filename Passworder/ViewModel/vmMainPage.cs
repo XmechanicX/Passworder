@@ -19,12 +19,16 @@ namespace Passworder.ViewModel
             AddCommand = new NonParamRelayCommand(Add, CanAdd);
             DeleteCommand = new NonParamRelayCommand(Delete, CanDelete);
             ApplyCommand = new NonParamRelayCommand(Apply);
+            ImportCommand = new NonParamRelayCommand(Import);
+            ExportCommand = new NonParamRelayCommand(Export);
         }
 
         public NonParamRelayCommand AddCommand { get; }
         public NonParamRelayCommand DeleteCommand { get; }
         public NonParamRelayCommand LoadCommand { get; }
         public NonParamRelayCommand ApplyCommand { get; }
+        public NonParamRelayCommand ImportCommand { get; }
+        public NonParamRelayCommand ExportCommand { get; }
 
         private DataFilling _selectedItem;
         public DataFilling SelectedItem
@@ -59,6 +63,16 @@ namespace Passworder.ViewModel
         private void Apply()
         {
             Model.UpdateDataInDb(SelectedItem);
+        }
+
+        private void Import()
+        {
+            Model.ImportData();
+        }
+
+        private void Export()
+        {
+            Model.ExportData();
         }
     }
 }
