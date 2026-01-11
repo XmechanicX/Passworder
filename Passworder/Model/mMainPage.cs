@@ -17,6 +17,7 @@ namespace Passworder.Model
 
         private void Items_CollectionChanged(object? sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
+
             CallPropertyChanged(nameof(Items));
         }
 
@@ -45,6 +46,8 @@ namespace Passworder.Model
         public void Add(DataFilling item)
         {
             Items.Add(item);
+
+            SelectedItem = item;
             AddDataInDb(item);
         }
 
@@ -57,26 +60,30 @@ namespace Passworder.Model
 
         private void Load()
         {
-            Items = new ObservableCollection<DataFilling>(command.GetData());
+            //Items = new ObservableCollection<DataFilling>(command.GetData());
+            Items = new ObservableCollection<DataFilling>(Serialization.DeSerializationJsonAsync());
             SelectedItem = Items.FirstOrDefault();
             CallPropertyChanged(nameof(Items));
         }
 
         public bool AddDataInDb(DataFilling dataFilling)
         {
-            command.AddDataInDb(dataFilling);
+            //command.AddDataInDb(dataFilling);
+            Serialization.SerializationJson(Items.ToList());
             return true;
         }
 
         public bool RemoveDataInDb(DataFilling dataFilling)
         {
-            command.RemoveDataInDb(dataFilling);
+            //command.RemoveDataInDb(dataFilling);
+            Serialization.SerializationJson(Items.ToList());
             return true;
         }
 
         public bool UpdateDataInDb(DataFilling dataFilling)
         {
-            command.UpdateDataInDb(dataFilling);
+            //command.UpdateDataInDb(dataFilling);
+            Serialization.SerializationJson(Items.ToList());
             return true;
         }
 

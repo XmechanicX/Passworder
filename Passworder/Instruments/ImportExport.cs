@@ -40,7 +40,7 @@ namespace Passworder.Instruments
                         Login = values[1],
                         Password = values[2]
                     };
-                    dbCommand.AddDataInDb(value);
+                    //dbCommand.AddDataInDb(value);
                 }
             }
         }

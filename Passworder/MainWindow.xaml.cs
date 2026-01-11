@@ -1,4 +1,6 @@
-﻿using Passworder.ViewModel;
+﻿using Passworder.Core;
+using Passworder.Instruments;
+using Passworder.ViewModel;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;

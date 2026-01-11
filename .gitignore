@@ -363,3 +363,4 @@ MigrationBackup/
 FodyWeavers.xsd
 /Passworder/DataBase/ApplicationContext.cs
 /Passworder/DataBase/ApplicationDbContext.cs
+/PassworderTest
